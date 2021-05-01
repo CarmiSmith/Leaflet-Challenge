@@ -6,45 +6,42 @@ d3.json(queryUrl, function(data) {
 });
 
 function createFeatures(earthquakeData) {
-  function onEachFeature(feature, layer) {
+  var earthquakes = L.geoJSON(earthquakeData, {
+    onEachFeature: function (feature, layer) {
     layer.bindPopup("<h3>" + feature.properties.place +
-      "</h3><hr><p>" + new Date(feature.properties.time) + "</p>");
-  }
+      "</h3><hr><p>" + new Date(feature.properties.time) + "</p>"  + "<p>" + "Depth: " + feature.geometry['coordinates'][2] + "</p>" + "<p>" + "Mag : " + feature.properties.mag + "</p>");
+  },
+  pointToLayer: function (feature, latlng) {
+    return new L.circle(latlng,
 
+      {
+        radius: radiusSize(feature.properties.mag),
+        fillColor: circleColor(feature.geometry['coordinates'][2]),
+        fillOpacity: .75,
+        color: "white",
+      })
+  }
+  });
    function radiusSize(magnitude) {
      return magnitude * 50000;
    }
-
-
     function circleColor(d) {
       if (d > 20) {
-       return  "#ff3333"
+       return  "red"
       }
       else if (d > 15) {
-        return "#ff6633"
+        return "orange"
       }
       else if (d > 10) {
-        return "#ff9933"
+        return "blue"
       }
       else if (d > 5) {
-        return "#ffff33"
+        return "yellow"
       }
       else {
-        return "#ccff33"
+        return "green"
       }
     }
-
-
-  var earthquakes = L.geoJSON(earthquakeData, {
-    pointToLayer: function(earthquakeData, latlng) {
-      return L.circle(latlng, {
-        radius: radiusSize(earthquakeData.properties.mag),
-        color: circleColor(earthquakeData.properties.mag),
-        fillOpacity: 1
-      });
-    },
-    onEachFeature: onEachFeature
-  });
 
   createMap(earthquakes);
 }
@@ -120,30 +117,30 @@ function createMap(earthquakes) {
   })
 
   // color function to be used when creating the legend
-    function getColor(d) {
-      return d > 20  ? '#ff3333' :
-             d > 15  ? '#ff6633' :
-             d > 10  ? '#ff9933' :
-             d > 5   ? '#ffff33' :
-                       '#ccff33';
-    }
+     function getColor(d) {
+       return d > 20  ? 'red' :
+              d > 15  ? 'orange' :
+              d > 10  ? 'blue' :
+              d > 5   ? 'yellow' :
+                        'green';
+     }
 
 // Add legend to the map
   var legend = L.control({position: 'bottomright'});
   
   legend.onAdd = function () {
   
-      var div = L.DomUtil.create('div', 'info legend'),
-          mags = [0, 5, 10, 15, 20],
-          labels = []
-
+      var div = L.DomUtil.create('div', 'info legend');
+      grades = [0, 5, 10, 15, 20];
+      //labels = [];
+      colors = ["green", "yellow", "blue", "orange", "red"]; 
           
-      for (var i = 0; i < mags.length; i++) {
-          div.innerHTML +=
-              '<i style="background:' + getColor(mags[i] + 1) + '"></i> ' +
-              mags[i] + (mags[i + 1] ? '&ndash;' + mags[i + 1] + '<br>' : '+');
-      }
-  
+        for (var i = 0; i < colors.length; i++) {
+            div.innerHTML +=
+                '<i style="background:' + getColor(colors[i]) + '"></i> ' +
+                colors[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
+        }
+       
       return div;
   };
   
