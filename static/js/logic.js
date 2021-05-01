@@ -58,21 +58,21 @@ function createMap(earthquakes) {
     maxZoom: 18,
     zoomOffset: -1,
     id: "mapbox/outdoors-v11",
-    accessToken: "pk.eyJ1IjoiY2FybWlzbWl0aCIsImEiOiJja24xc2M1enAxMHZ3Mm5tbzU3b2drOGJ5In0.XrT7BzsCVvKMDpJdN4XN8w"
+    accessToken: API_KEY
   });
 
   var satellitemap = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
     attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
     maxZoom: 18,
     id: "satellite-v9",
-    accessToken: "pk.eyJ1IjoiY2FybWlzbWl0aCIsImEiOiJja24xc2M1enAxMHZ3Mm5tbzU3b2drOGJ5In0.XrT7BzsCVvKMDpJdN4XN8w"
+    accessToken: API_KEY
   });
 
   var darkscalemap = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
     attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
     maxZoom: 18,
     id: "dark-v10",
-    accessToken: "pk.eyJ1IjoiY2FybWlzbWl0aCIsImEiOiJja24xc2M1enAxMHZ3Mm5tbzU3b2drOGJ5In0.XrT7BzsCVvKMDpJdN4XN8w"
+    accessToken: API_KEY
   });
 
   // Create the faultline layer
