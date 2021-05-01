@@ -132,7 +132,7 @@ function createMap(earthquakes) {
   
       var div = L.DomUtil.create('div', 'info legend');
       grades = [0, 5, 10, 15, 20];
-      
+      //labels = [];
       colors = ["green", "yellow", "blue", "orange", "red"]; 
           
         for (var i = 0; i < colors.length; i++) {
