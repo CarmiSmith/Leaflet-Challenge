@@ -119,14 +119,14 @@ function createMap(earthquakes) {
     }).addTo(faultLine)
   })
 
-   //color function to be used when creating the legend
-  //  function getColor(d) {
-  //    return d > 20  ? '#ff3333' :
-  //           d > 15  ? '#ff6633' :
-  //           d > 10  ? '#ff9933' :
-  //           d > 5   ? '#ffff33' :
-  //                     '#ccff33';
-  //  }
+  // color function to be used when creating the legend
+    function getColor(d) {
+      return d > 20  ? '#ff3333' :
+             d > 15  ? '#ff6633' :
+             d > 10  ? '#ff9933' :
+             d > 5   ? '#ffff33' :
+                       '#ccff33';
+    }
 
 // Add legend to the map
   var legend = L.control({position: 'bottomright'});
