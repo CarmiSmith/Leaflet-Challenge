@@ -121,7 +121,7 @@ function createMap(earthquakes) {
        return d > 70  ? 'red' :
               d > 50  ? 'orange' :
               d > 30  ? 'blue' :
-              d > 10   ? 'yellow' :
+              d > 10  ? 'yellow' :
                         'green';
      }
 
