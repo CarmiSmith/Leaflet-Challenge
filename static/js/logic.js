@@ -137,7 +137,7 @@ function createMap(earthquakes) {
           
         for (var i = 0; i < colors.length; i++) {
             div.innerHTML +=
-                '<i style="background:' + getColor(colors[i]) + '"></i> ' + colors[i] +
+                '<i style="background: ' + getColor(colors[i]) + '"></i> ' + colors[i] +
                 grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
         }
        
