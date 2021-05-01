@@ -116,7 +116,7 @@ function createMap(earthquakes) {
     }).addTo(faultLine)
   })
 
-  // color function to be used when creating the legend
+  // Color function to be used when creating the legend
      function getColor(d) {
        return d > 70  ? 'red' :
               d > 50  ? 'orange' :
