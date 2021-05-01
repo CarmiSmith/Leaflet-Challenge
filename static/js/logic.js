@@ -18,7 +18,7 @@ function createFeatures(earthquakeData) {
         radius: radiusSize(feature.properties.mag),
         fillColor: circleColor(feature.geometry['coordinates'][2]),
         fillOpacity: .75,
-        color: "white",
+        color: "clear",
       })
   }
   });
@@ -26,16 +26,16 @@ function createFeatures(earthquakeData) {
      return magnitude * 50000;
    }
     function circleColor(d) {
-      if (d > 20) {
+      if (d > 70) {
        return  "red"
       }
-      else if (d > 15) {
+      else if (d > 50) {
         return "orange"
       }
-      else if (d > 10) {
+      else if (d > 30) {
         return "blue"
       }
-      else if (d > 5) {
+      else if (d > 10) {
         return "yellow"
       }
       else {
@@ -118,10 +118,10 @@ function createMap(earthquakes) {
 
   // color function to be used when creating the legend
      function getColor(d) {
-       return d > 20  ? 'red' :
-              d > 15  ? 'orange' :
-              d > 10  ? 'blue' :
-              d > 5   ? 'yellow' :
+       return d > 70  ? 'red' :
+              d > 50  ? 'orange' :
+              d > 30  ? 'blue' :
+              d > 10   ? 'yellow' :
                         'green';
      }
 
@@ -131,14 +131,14 @@ function createMap(earthquakes) {
   legend.onAdd = function () {
   
       var div = L.DomUtil.create('div', 'info legend');
-      grades = [0, 5, 10, 15, 20];
+      grades = [-10, 10, 30, 50, 70];
       //labels = [];
       colors = ["green", "yellow", "blue", "orange", "red"]; 
           
         for (var i = 0; i < colors.length; i++) {
             div.innerHTML +=
-                '<i style="background:' + getColor(colors[i]) + '"></i> ' +
-                colors[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
+                '<i style="background:' + getColor(colors[i]) + '"></i> ' + colors[i] +
+                grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
         }
        
       return div;
